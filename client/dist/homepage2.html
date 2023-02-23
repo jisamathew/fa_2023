@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<!--INSPECTOR-->
+<head>
+  <title>Farm Certification - UseCase</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+   <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css" />
+  
+  <!-- Meta tag Keywords -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="keywords" content="Green Life web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"
+  />
+  <script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+ var lat,lon;
+  function myFunction(val) {
+      
+   // alert(val);
+    lat = val;
+    if(lat != null && lon != null){
+  console.log('GOT BOTH');
+  console.log(lat+','+lon);
+    }
+    else{
+      console.log('Provide latiitude and longitude');
+    }
+}
+ function myFunction2(val) {
+   //console.log(lat);
+   document.getElementById('mapContainer').style.display ="block";
+    lon = val
+    console.log(lon);
+if(lat && lon){
+  console.log('GOT BOTH');
+  console.log(lat+','+lon);
+      L.mapquest.key = '0iAi6Cp45QtBApkpmLCEyAcuG58rQi1h'
+            var map = L.mapquest.map('mapContainer', {
+              center: [lat, lon],
+              layers: L.mapquest.tileLayer('satellite'),
+              zoom: 16
+            })
+    
+     map.addControl(L.mapquest.control())
+            var customIcon = L.icon({
+              iconUrl: 'https://assets.mapquestapi.com/icon/v2/marker-start.png',
+              iconSize: [20, 29],
+              iconAnchor: [10, 29],
+              popupAnchor: [0, -29]
+            })
+
+            marker0 = L.marker([lat, lon], {
+              icon: customIcon,
+              draggable: false
+            }).addTo(map)
+    
+}
+else{
+  document.getElementById('mapContainer').style.display="none";
+}
+ }
+ 
+
+	</script>
+  <!--// Meta tag Keywords -->
+ 	<!-- css files -->
+	 <link rel="stylesheet" href="./stylesheets/bootstrap.css">
+	 <!-- Bootstrap-css -->
+	 <link rel="stylesheet" href="./stylesheets/style.css" type="text/css" media="all" />
+	 <!-- Style-css -->
+	 <link rel="stylesheet" href="./stylesheets/font-awesome.css">
+	 <!-- Font-Awesome-Icons-css -->
+ 
+	 <link rel="stylesheet" href="./stylesheets/flexslider.css" type="text/css" media="screen" property="" />
+ 
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-migrate-1.4.1.min.js"></script> 
+ 
+</head>
+
+<body id="homepage2">
+  <div class="main-agile">
+<div class="agileits-services" id="services">
+		<div class="container">
+			<div class="title-div">
+				<h3 class="tittle">
+					Inspection
+				</h3>
+				<div class="tittle-style">
+				</div>
+			</div>
+			<div class="agileits-services-row">
+        	<div class="col-md-6 col-xs-3 agileits-services-grids">
+					<div class="col-xs-3 wthree-ser">
+						<i class="fa fa-pencil-square-o " aria-hidden="true"></i>
+					</div>
+					<div class="col-xs-9 wthree-heading">
+						<h4>Verify Application</h4>
+					</div>
+					<div class="clearfix"></div>
+					<br>
+					<button onclick="App.inspectView()" data-toggle="modal" data-target="#myModal1" class="w3-buttons">Proceed</button>
+				</div>
+    
+			
+				<div class="col-md-6 col-xs-3 agileits-services-grids">
+					<div class="col-xs-3 wthree-ser">
+						<i class="fa fa-search" aria-hidden="true"></i>
+					</div>
+					<div class="col-xs-9 wthree-heading">
+						<h4>Search Application</h4>
+					</div>
+					<div class="clearfix"></div>
+				<br>
+					<button onclick = "App.Inspection()" data-toggle="modal" data-target="#myModal1" class="w3-buttons">Proceed</button>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			
+		</div>
+	</div>
+	<!-- //services -->
+<div id="viewApp" style="display:none;">
+			 <!-- Responsive table starts here -->
+    <!-- For correct display on small screens you must add 'data-title' to each 'td' in your table -->
+    <div class="table-responsive-vertical shadow-z-1">
+      <!-- Table starts here -->
+   
+			<table id="table" class="table table-hover table-mc-light-blue">
+				<thead>
+					<tr>
+						<th scope="col">ID</th>
+						<th scope="col">Farmer</th>
+						<th scope="col">Address</th>
+						<!-- <th scope="col">Latitude</th>
+						<th scope="col">Longitude</th> -->
+						<th scope="col">Requirement</th>
+						<th scope="col">Standard</th>
+						<th scope="col">Account</th>
+           
+
+
+					</tr>
+				</thead>
+				<tbody id="candidatesResults">
+				</tbody>
+			</table>
+		</div>
+		
+</div>
+
+</div>
+
+
+		<div id="SingleApplication" style="display:none;"class="row">
+<div class="col-md-6">
+			<h1>INSPECTION</h1>
+			<br>Application id :
+			<br> <input type="text" id="fieldid" disabled><br>
+			<br>Field Owner :
+			<br> <input type="text" id="owner" disabled><br>
+			<br>Address :
+			<br> <input type="text" id="addr" disabled><br>
+			<br>Requirement :
+			<br> <input type="text" id="production" disabled><br>
+			<br>Standard :
+			<br> <input type="text" id="std" disabled><br>
+			<br><br>Account :
+			<br> <input type="text" id="acc" disabled><br>
+      <br><br>Status :
+				<br> <input type="text" id="stat1" disabled><br>
+<input type="hidden" id="latit" disabled>
+ <input type="hidden" id="longit" disabled>
+			Cropping System followed:<br>
+				<br>(i) Name of the Crops
+				<input type="text" id="crop" disabled><br>
+				<br> (ii) Extent of each crop grown
+				<input type="text" id="extent" disabled><br>
+					<br>Input applied to previous crops
+				<input type="text" id="precrop" disabled>			
+</div>
+<div class="col-md-6">
+			<div style="width:auto; height: 400px;" style="display:none;" id="mapFrame"></div>
+			
+				<br>Plant Protection measures followed
+				<input type="text" id="protect" disabled>
+				<br>
+
+				<br>Source of manure
+				<input type="text" id="manure" disabled>
+				<br>
+				<br>Source of seed
+				<input type="text" id="seed" disabled>
+				<br>
+				<br>Soil Type
+				<input type="text" id="soil" disabled>
+				<br>
+
+<div id="inspect" style="display:none;">
+			<br><br><label for="place">Tentative Date of Inspection:</label>
+			<input type="text" id="idate3" required>
+			<br><br><label for="inspection">Inspector Name</label>
+			<input type="text" id="iname3" required>
+
+</div>
+<div id="addinspect" style="display:none;">
+			<br><br><label for="place">Tentative Date of Inspection:</label>
+			<input type="date" id="idate" required>
+			<br><br><label for="inspection">Inspector Name</label>
+			<input type="text" id="iname" required>
+
+			<br><br><button id="send" onclick="App.InspectDetails()">ACCEPT</button>
+			<br>
+</div>
+
+</div>
+		</div>
+
+
+		<div id="FinalCertificate" style="display:none;">
+			<center>
+
+				<h1>CERTIFICATE</h1>
+				<div class="row">
+					<div class="col-md-12">
+						This is to certify that the field is Organic
+					</div>
+				</div>
+				<table class="table-hover">
+					<th colspan=4>FARM DETAILS</th>
+					<tr>
+						<td style=' color: black;'>Field_id</td>
+						<td> &nbsp;</td>
+						<td><label style='color: black;' id="farm">
+						</label></td>
+						<td></td>
+						<td rowspan="2"><img id="logo" src="" style="float:right;" height="100" width="100">
+						</td>
+
+					</tr>
+					<tr>
+						<td style=' color: black;' colspan=2>Ownership:
+						</td>
+						<td>
+							<label id="owns"></label><br>
+
+							<label id="add"> </label>
+						</td>
+
+
+					</tr>
+
+
+					<tr>
+						<td>
+							Certification for:</td>
+						<td></td>
+						<td><br><label style='color: black;' id="re"></label></td>
+
+
+					</tr>
+
+
+
+
+					<tr>
+						<td style=' color: black;'>Seed Source:</td>
+						<td>&nbsp;&nbsp;&nbsp;</td>
+						<td><label style='color: black;' id="seedsource"></label></td>
+					</tr>
+					<tr>
+
+						<td style=' color: black;'>Soil type:</td>
+						<td>&nbsp;&nbsp;&nbsp;</td>
+						<td><label style='color: black;' id="soil"></label></td>
+
+
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td style='color: black;'>Certification Standard:</td><br>
+						<td></td>
+
+						<td><label style='color: black;' id="stnd"></label></td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<!-- <tr>
+						<th colspan=4>FIELD LOCATION</th>
+
+					</tr>
+
+
+
+					<tr>
+						<th style=' color: black;'>(i)Latitude:<br>
+							<td id="la"></td>
+						</th>
+						<th style=' color: black;'>(ii)Longitude:<br>
+							<td id="long"></td>
+						</th>
+
+					</tr> -->
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<th colspan=4>INSPECTION DETAILS</th>
+
+					<tr>
+
+						<td style=' color: black;'>Inspected By</td>
+						<td>:</td>
+						<td style='color: black;' id="iby"></td>
+					</tr>
+					<tr>
+						<td style=' color: black;'></td>
+						<td></td>
+						<td style='color: black;'></td>
+					</tr>
+					<tr>
+						<td style='color: black;'>Date of Inspection</td>
+						<td>:</td>
+						<td style=' color: black;' id="ida"></td>
+					</tr>
+
+					<tr>
+						<td style=' color: black;'>Validity</td>
+						<td>:</td>
+						<td style=' color: black;' id="cval"></td>
+					</tr>
+					<tr>
+						<td colspan="5">
+							<div style="width:auto; height: 300px;" id="mapSh" style="display:none"></div>
+						</td>
+					</tr>
+					<tr>
+
+						<td></td>
+						<td></td>
+						<td>
+							<td>
+								<div id="contentqr" style="display: none;">
+									<img id="qr" src=""></td>
+						</td>
+						<br>
+						</td>
+						<td>Certifying Authority <br>
+							<label style=' color: black;' id="cby">
+					</label></td>
+					</tr>
+
+				</table>
+			</center>
+		</div>
+		<div id="searchFarm" class="row"  style="display:none;">
+<div class="col-md-1">
+</div>
+<div class="col-md-5">
+			<br><br>Application id :
+			<input type="text" id="farmid" onchange="App.InspectorSearchFound()"><br>
+			<div id="farmDetails"  style="display:none;">
+				<br>Field Owner :
+				<br> <input type="text" id="owner1" disabled><br>
+				<br>Address :
+				<br> <input type="text" id="addr1" disabled><br>
+				<br>Requirement :
+				<br> <input type="text" id="production1" disabled><br>
+				<br>Standard :
+				<br> <input type="text" id="std1" disabled><br>
+				<br><br>Account :
+				<br> <input type="text" id="acc1" disabled><br>
+				<br>Status :
+				<br> <input type="text" id="stat2" disabled>
+				 <input type="hidden" id="latit1" disabled><br>
+		
+			<br> <input type="hidden" id="longit1" disabled><br>
+			</div>
+</div>
+			<div class="col-md-6">
+
+				<div style="width:auto; height: 350px;margin-top:60px;" id="mapFrame2"></div>
+
+		
+			<div id="inspectionDetails" style="display:none;">
+				<br><br><label for="place">Date of Inspection:</label>
+				<input type="text" id="idate1" disabled>
+				<br><br><label for="inspection">Inspector Name</label>
+				<input type="text" id="iname1" disabled>
+			</div>
+			</div>
+
+		</div>
+
+
+
+    <!-- js-scripts -->
+	<!-- jquery -->
+	<script src="./javascripts/jquery-2.1.4.min.js"></script>
+	<!-- //jquery -->
+
+	<script src="./javascripts/bootstrap.js"></script>
+	<!-- Necessary-JavaScript-File-For-Bootstrap -->
+
+
+	<!-- stats numscroller-js-file -->
+	<script src="./javascripts/numscroller-1.0.js"></script>
+	<!-- //stats numscroller-js-file -->
+
+
+    <script src="dist/truffle-contract/dist/truffle-contract.js"></script>
+
+    <script  src="./dist/bundle.js" ></script> 
+
+
+   
+</body>
+
+</html>
