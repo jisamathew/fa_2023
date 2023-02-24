@@ -12,7 +12,8 @@
     "webpack": "node_modules/.bin/webpack --watch",
     "test": "echo \"Error: no test specified\" && exit 1",
     "custom": "node_modules/.bin/webpack && nodemon server/main.js",
-    "st": "nodemon main.js"
+    "st": "nodemon main.js",
+    "build": "webpack --mode=development"
   },
   "author": "",
   "license": "ISC",
